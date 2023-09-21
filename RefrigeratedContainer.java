@@ -1,3 +1,4 @@
+//Author : Munashe Chipanga
 public class RefrigeratedContainer extends HeavyContainer {
 
     public RefrigeratedContainer(int id, int wei){

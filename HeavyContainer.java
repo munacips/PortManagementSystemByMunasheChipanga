@@ -1,3 +1,4 @@
+//Author : Munashe Chipanga
 public class HeavyContainer extends Container{
     private double fuel_consumption = 3.0F;
     public HeavyContainer(int id, int wei) {
