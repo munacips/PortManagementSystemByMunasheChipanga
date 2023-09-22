@@ -1,6 +1,7 @@
 //Author : Munashe Chipanga
 public class RefrigeratedContainer extends HeavyContainer {
 
+    char type = 'R';
     public RefrigeratedContainer(int id, int wei){
 
         super(id,wei);

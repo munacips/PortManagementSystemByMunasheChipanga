@@ -1,6 +1,7 @@
 //Author : Munashe Chipanga
 public class BasicContainer extends Container {
     private final float fuel_consumption = 2.50F;
+    char type = 'B';
     public BasicContainer(int id,int wei){
         super(id,wei);
     }
@@ -24,5 +25,11 @@ public class BasicContainer extends Container {
     int getID() {
         return this.ID;
     }
+
+    @Override
+    char getType() {
+        return this.type;
+    }
+
 
 }

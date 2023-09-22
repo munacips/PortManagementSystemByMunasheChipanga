@@ -1,6 +1,7 @@
 //Author : Munashe Chipanga
 public class HeavyContainer extends Container{
     private double fuel_consumption = 3.0F;
+    private final char type = 'H';
     public HeavyContainer(int id, int wei) {
         super(id, wei);
     }
@@ -25,7 +26,13 @@ public class HeavyContainer extends Container{
         return this.ID;
     }
 
+    @Override
+    char getType() {
+        return this.type;
+    }
+
     void setFuel_consumption(double fuel_consumption){
         this.fuel_consumption = fuel_consumption;
     }
+
 }

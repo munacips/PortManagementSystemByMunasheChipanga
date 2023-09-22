@@ -14,4 +14,5 @@ public abstract class Container {
 
     abstract int getWeight();
     abstract int getID();
+    abstract char getType();
 }
