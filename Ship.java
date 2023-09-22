@@ -52,5 +52,33 @@ public class Ship implements Iship {
     public boolean load(Container cont) {
         return containers.contains(cont);
     }
+
+    public boolean maxRefReached(){
+        int count = 0;
+        for(Container c:this.containers){
+            if(c.getType()=='R'){
+                count+=1;
+            }
+        }
+        return count >= this.maxRefContainers;
+    }
+    public boolean maxLiqReached(){
+        int count = 0;
+        for(Container c:this.containers){
+            if(c.getType()=='L'){
+                count+=1;
+            }
+        }
+        return count >= this.maxLiqContainers;
+    }
+    public boolean maxHeaReached(){
+        int count = 0;
+        for(Container c:this.containers){
+            if(c.getType()=='H'){
+                count+=1;
+            }
+        }
+        return count >= this.maxHeavyContainers;
+    }
 }
 //Author : Munashe Chipanga

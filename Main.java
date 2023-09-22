@@ -170,7 +170,30 @@ public class Main {
                                                 System.out.println("Maximum number of containers reached");
                                             }
                                         } else {
-                                            s.containers.add(c);
+                                            //s.containers.add(c);
+                                            switch (c.getType()){
+                                                case 'H' -> {
+                                                    if(s.maxHeaReached()){
+                                                        System.out.println("The maximum number of heavy containers has been reached");
+                                                    } else {
+                                                        s.containers.add(c);
+                                                    }
+                                                }
+                                                case 'L' -> {
+                                                    if(s.maxLiqReached()){
+                                                        System.out.println("The maximum number of liquid containers has been reached");
+                                                    } else {
+                                                        s.containers.add(c);
+                                                    }
+                                                }
+                                                case 'R' -> {
+                                                    if(s.maxRefReached()){
+                                                        System.out.println("The maximum number of refrigerated containers has been reached");
+                                                    } else {
+                                                        s.containers.add(c);
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                     loaded = true;
