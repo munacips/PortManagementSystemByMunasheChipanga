@@ -65,7 +65,7 @@ public class Main {
                             System.out.println("-------------------------------------------------------------------------------------------");
                         } else {
                             AllContainers.add(new BasicContainer(id,weight));
-                            System.out.print("Created !");
+                            System.out.println("Created !");
                             System.out.println("-------------------------------------------------------------------------------------------");
                             created = true;
                         }
@@ -76,20 +76,20 @@ public class Main {
                             System.out.print("Enter the ID of the container : ");
                             int id = scan.nextInt();
                             AllContainers.add(new RefrigeratedContainer(id,weight));
-                            System.out.print("Created !");
+                            System.out.println("Created !");
                             System.out.println("-------------------------------------------------------------------------------------------");
                             created = true;
                         } else if (type=='L') {
                             System.out.print("Enter the ID of the ship : ");
                             int id = scan.nextInt();
                             AllContainers.add(new LiquidContainer(id,weight));
-                            System.out.print("Created !");
+                            System.out.println("Created !");
                             System.out.println("-------------------------------------------------------------------------------------------");
                             created = true;
                         }
                     }
                     if(!created){
-                        System.out.print("Not created! Error occurred ");
+                        System.out.println("Not created! Error occurred ");
                         System.out.println("-------------------------------------------------------------------------------------------");
                     }
                 }
@@ -112,24 +112,25 @@ public class Main {
                             }
                         }
                         if(port==null){
-                            System.out.print("No valid port was entered");
+                            System.out.println("No valid port was entered");
                             System.out.println("-------------------------------------------------------------------------------------------");
                             //RESTART
-                        }
-                        System.out.print("Enter the maximum number of containers in the ship : ");
-                        int cont_num = scan.nextInt();
-                        System.out.print("Enter the number of heavy containers in the ship : ");
-                        int h_num = scan.nextInt();
-                        System.out.print("Enter the number of refrigerated containers in the ship : ");
-                        int r_num = scan.nextInt();
-                        System.out.print("Enter the number of liquid containers in the ship : ");
-                        int l_num = scan.nextInt();
-                        System.out.print("Enter the fuel consumption of the ship : ");
-                        double fuel_consumption = scan.nextDouble();
+                        } else {
+                            System.out.print("Enter the maximum number of containers in the ship : ");
+                            int cont_num = scan.nextInt();
+                            System.out.print("Enter the number of heavy containers in the ship : ");
+                            int h_num = scan.nextInt();
+                            System.out.print("Enter the number of refrigerated containers in the ship : ");
+                            int r_num = scan.nextInt();
+                            System.out.print("Enter the number of liquid containers in the ship : ");
+                            int l_num = scan.nextInt();
+                            System.out.print("Enter the fuel consumption of the ship : ");
+                            double fuel_consumption = scan.nextDouble();
 
-                        AllShips.add(new Ship(id,port,weight_capacity,cont_num,h_num,r_num,l_num,fuel_consumption));
-                        System.out.print("Created !");
-                        System.out.println("-------------------------------------------------------------------------------------------");
+                            AllShips.add(new Ship(id,port,weight_capacity,cont_num,h_num,r_num,l_num,fuel_consumption));
+                            System.out.println("Created !");
+                            System.out.println("-------------------------------------------------------------------------------------------");
+                        }
                     }
                 }
                 case 3 -> {
@@ -144,7 +145,7 @@ public class Main {
                         System.out.println("-------------------------------------------------------------------------------------------");
                     } else {
                         AllPorts.add(new Port(x,y,id));
-                        System.out.print("Created !");
+                        System.out.println("Created !");
                         System.out.println("-------------------------------------------------------------------------------------------");
                     }
                 }
@@ -197,17 +198,14 @@ public class Main {
                                         }
                                     }
                                     loaded = true;
-                                    System.out.print("Loaded !");
+                                    System.out.println("Loaded !");
                                     System.out.println("-------------------------------------------------------------------------------------------");
                                 }
                             }
-                        } else {
-                            System.out.print("Either the ship or container does not exist.");
-                            System.out.println("-------------------------------------------------------------------------------------------");
                         }
                     }
                     if(!loaded){
-                        System.out.print("Not loaded! Invalid details");
+                        System.out.println("Not loaded! Invalid details");
                         System.out.println("-------------------------------------------------------------------------------------------");
                     }
                 }
@@ -224,21 +222,21 @@ public class Main {
                                     if(s.containers.contains(c)){
                                         s.containers.remove(c);
                                         unloaded = true;
-                                        System.out.print("Unloaded !");
+                                        System.out.println("Unloaded !");
                                         System.out.println("-------------------------------------------------------------------------------------------");
                                     }else {
-                                        System.out.print("The container is not in here ");
+                                        System.out.println("The container is not in here ");
                                         System.out.println("-------------------------------------------------------------------------------------------");
                                     }
                                 }
                             }
                         } else {
-                            System.out.print("Either the ship or container does not exist.");
+                            System.out.println("Either the ship or container does not exist.");
                             System.out.println("-------------------------------------------------------------------------------------------");
                         }
                     }
                     if(!unloaded){
-                        System.out.print("Ship not unloaded! Invalid details");
+                        System.out.println("Ship not unloaded! Invalid details");
                         System.out.println("-------------------------------------------------------------------------------------------");
                     }
                 }
@@ -260,7 +258,7 @@ public class Main {
                                         s.currentPort = p;
                                         p.incomingShip(s);
                                         sailed = true;
-                                        System.out.print("The ship has sailed to the port");
+                                        System.out.println("The ship has sailed to the port");
                                         System.out.println("-------------------------------------------------------------------------------------------");
                                     }
                                 }
@@ -268,7 +266,7 @@ public class Main {
                         }
                     }
                     if(!sailed){
-                        System.out.print("Sail failed! Invalid details");
+                        System.out.println("Sail failed! Invalid details");
                         System.out.println("-------------------------------------------------------------------------------------------");
                     }
                 }
@@ -283,7 +281,7 @@ public class Main {
                             if(fuel>(s.fuelCapacity-s.fuel_level)){
                                 s.reFuel(fuel);
                                 refueled = true;
-                                System.out.print("Ship refueled !");
+                                System.out.println("Ship refueled !");
                                 System.out.println("-------------------------------------------------------------------------------------------");
                             }else{
                                 System.out.print("Not enough space");
@@ -291,7 +289,7 @@ public class Main {
                         }
                     }
                     if (!refueled){
-                        System.out.print("Refuel failed! Either the details you entered are not correct or they do not exist");
+                        System.out.println("Refuel failed! Either the details you entered are not correct or they do not exist");
                         System.out.println("-------------------------------------------------------------------------------------------");
                     }
                 }
