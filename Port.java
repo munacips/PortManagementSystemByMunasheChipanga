@@ -2,9 +2,9 @@
 import java.util.ArrayList;
 
 public class Port implements IPort {
-    double x_cord;
-    double y_cord;
-    int port_id;
+    private double x_cord;
+    private double y_cord;
+    private int port_id;
     ArrayList<Ship> history = new ArrayList<>();
     ArrayList<Ship> current = new ArrayList<>();
 
@@ -24,6 +24,21 @@ public class Port implements IPort {
     @Override
     public void outgoingShip(Ship s) {
         history.add(s);
+    }
+
+    @Override
+    public int getID() {
+        return this.port_id;
+    }
+
+    @Override
+    public double getXCord() {
+        return this.x_cord;
+    }
+
+    @Override
+    public double getYCord() {
+        return this.y_cord;
     }
 
     @Override

@@ -1,9 +1,9 @@
 //Author : Munashe Chipanga
 public class HeavyContainer extends Container{
     private double fuel_consumption = 3.0F;
-    private final char type = 'H';
-    public HeavyContainer(int id, int wei) {
-        super(id, wei);
+
+    public HeavyContainer(int id, int wei, Port port) {
+        super(id, wei, port);
     }
 
     @Override
@@ -28,7 +28,12 @@ public class HeavyContainer extends Container{
 
     @Override
     char getType() {
-        return this.type;
+        return 'H';
+    }
+
+    @Override
+    Port getCurrent_port() {
+        return this.current_port;
     }
 
     void setFuel_consumption(double fuel_consumption){

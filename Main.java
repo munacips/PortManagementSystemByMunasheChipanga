@@ -12,7 +12,7 @@ public class Main {
 
     public static boolean ship_id_exist(int id){
         for(Ship s:AllShips){
-            if(s.id==id){
+            if(s.getID()==id){
                 return true;
             }
         }
@@ -20,7 +20,7 @@ public class Main {
     }
     public static boolean port_id_exist(int id){
         for(Port p:AllPorts){
-            if(p.port_id==id){
+            if(p.getID()==id){
                 return true;
             }
         }
@@ -57,39 +57,69 @@ public class Main {
                     boolean created = false;
                     System.out.print("Enter the weight of the container : ");
                     int weight = scan.nextInt();
-                    if(weight<5000){
-                        System.out.print("Enter the ID of the ship : ");
-                        int id = scan.nextInt();
-                        if(container_id_exist(id)){
-                            System.out.println("ID already exists");
-                            System.out.println("-------------------------------------------------------------------------------------------");
-                        } else {
-                            AllContainers.add(new BasicContainer(id,weight));
-                            System.out.println("Created !");
-                            System.out.println("-------------------------------------------------------------------------------------------");
-                            created = true;
-                        }
-                    } else {
-                        System.out.println("Is it a refrigerated container(R) or a liquid container(L) : ");
-                        char type = scan.next().charAt(0);
-                        if(type=='R'){
-                            System.out.print("Enter the ID of the container : ");
-                            int id = scan.nextInt();
-                            AllContainers.add(new RefrigeratedContainer(id,weight));
-                            System.out.println("Created !");
-                            System.out.println("-------------------------------------------------------------------------------------------");
-                            created = true;
-                        } else if (type=='L') {
-                            System.out.print("Enter the ID of the ship : ");
-                            int id = scan.nextInt();
-                            AllContainers.add(new LiquidContainer(id,weight));
-                            System.out.println("Created !");
-                            System.out.println("-------------------------------------------------------------------------------------------");
-                            created = true;
+                    System.out.print("Enter the ID of the port  : ");
+                    int portID = scan.nextInt();
+                    Port port = null;
+                    if(port_id_exist(portID)){
+                        for(Port p:AllPorts){
+                            if(p.getID()==portID){
+                                port = p;
+                            }
                         }
                     }
+                    System.out.print("Is it a refrigerated container(R), liquid container(L) or basic container(B) : ");
+                    char type = scan.next().charAt(0);
+                    switch (type){
+                        case 'R' -> {
+                            System.out.print("Enter the ID of the container : ");
+                            int id = scan.nextInt();
+                            if(container_id_exist(id)){
+                                System.out.println("ID already exists");
+                                System.out.println("-------------------------------------------------------------------------------------------");
+                            } else {
+                                AllContainers.add(new RefrigeratedContainer(id,weight,port));
+                                System.out.println("A refrigerated container has been created !");
+                                System.out.println("-------------------------------------------------------------------------------------------");
+                                created = true;
+                            }
+                        }
+                        case 'L' -> {
+                            System.out.print("Enter the ID of the container : ");
+                            int id = scan.nextInt();
+                            if(container_id_exist(id)){
+                                System.out.println("ID already exists");
+                                System.out.println("-------------------------------------------------------------------------------------------");
+                            } else {
+                                AllContainers.add(new LiquidContainer(id,weight,port));
+                                created = true;
+                                System.out.println("A liquid container has been created !");
+                                System.out.println("-------------------------------------------------------------------------------------------");
+                            }
+                        }
+                        case 'B' -> {
+                            System.out.print("Enter the ID of the container : ");
+                            int id = scan.nextInt();
+                            if(container_id_exist(id)){
+                                System.out.println("ID already exists");
+                                System.out.println("-------------------------------------------------------------------------------------------");
+                            } else {
+                                if(weight>5000){
+                                    AllContainers.add(new HeavyContainer(id,weight,port));
+                                    created = true;
+                                    System.out.println("A heavy container has been created ! ");
+                                    System.out.println("-------------------------------------------------------------------------------------------");
+                                } else {
+                                    AllContainers.add(new BasicContainer(id,weight,port));
+                                    created = true;
+                                    System.out.println("A basic container has been created ! ");
+                                    System.out.println("-------------------------------------------------------------------------------------------");
+                                }
+                            }
+                        }
+                        default -> throw new IllegalStateException("Unexpected value: " + type);
+                    }
                     if(!created){
-                        System.out.println("Not created! Error occurred ");
+                        System.out.println("Container not created, an error occurred !");
                         System.out.println("-------------------------------------------------------------------------------------------");
                     }
                 }
@@ -106,7 +136,7 @@ public class Main {
                         System.out.print("Enter the id of the port : ");
                         int port_id = scan.nextInt();
                         for(Port p:AllPorts){
-                            if (port_id==p.port_id){
+                            if (port_id==p.getID()){
                                 port = p;
                                 break;
                             }
@@ -128,7 +158,7 @@ public class Main {
                             double fuel_consumption = scan.nextDouble();
 
                             AllShips.add(new Ship(id,port,weight_capacity,cont_num,h_num,r_num,l_num,fuel_consumption));
-                            System.out.println("Created !");
+                            System.out.printf("The ship with id : %d has been created !",id);
                             System.out.println("-------------------------------------------------------------------------------------------");
                         }
                     }
@@ -145,7 +175,7 @@ public class Main {
                         System.out.println("-------------------------------------------------------------------------------------------");
                     } else {
                         AllPorts.add(new Port(x,y,id));
-                        System.out.println("Created !");
+                        System.out.printf("Port with id : %d has been created !",id);
                         System.out.println("-------------------------------------------------------------------------------------------");
                     }
                 }
@@ -158,7 +188,7 @@ public class Main {
                     for(Container c:AllContainers){
                         if(c.getID()==cont_id){
                             for(Ship s:AllShips){
-                                if(s.id==ship_id){
+                                if(s.getID()==ship_id){
                                     if(s.containers.contains(c)){
                                         System.out.print("Already in ");
                                     } else {
@@ -166,40 +196,59 @@ public class Main {
                                         for(Container con:s.containers){
                                             cont_weights += con.weight;
                                         }
-                                        if(c.weight>(s.maxWeight - cont_weights)){
-                                            if(s.containers.size()>=s.maxWeight){
+                                        if(c.weight>(s.getMaxWeight() - cont_weights)){
+                                            if(s.containers.size()>=s.getMaxWeight()){
                                                 System.out.println("Maximum number of containers reached");
                                             }
                                         } else {
-                                            //s.containers.add(c);
-                                            switch (c.getType()){
-                                                case 'H' -> {
-                                                    if(s.maxHeaReached()){
-                                                        System.out.println("The maximum number of heavy containers has been reached");
-                                                    } else {
-                                                        s.containers.add(c);
+                                            if(s.getCurrentPort()==c.current_port){
+                                                switch (c.getType()){
+                                                    case 'H' -> {
+                                                        if(s.maxHeaReached()){
+                                                            System.out.println("The maximum number of heavy containers has been reached");
+                                                        } else {
+                                                            s.containers.add(c);
+                                                            loaded = true;
+                                                            System.out.printf("The ship with id: %d has been loaded with a container with id : %d!",s.getID(),c.getID());
+                                                            System.out.println("-------------------------------------------------------------------------------------------");
+                                                        }
+                                                    }
+                                                    case 'L' -> {
+                                                        if(s.maxLiqReached()){
+                                                            System.out.println("The maximum number of liquid containers has been reached");
+                                                        } else {
+                                                            s.containers.add(c);
+                                                            loaded = true;
+                                                            System.out.printf("The ship with id: %d has been loaded with a container with id : %d!",s.getID(),c.getID());
+                                                            System.out.println("-------------------------------------------------------------------------------------------");
+                                                        }
+                                                    }
+                                                    case 'R' -> {
+                                                        if(s.maxRefReached()){
+                                                            System.out.println("The maximum number of refrigerated containers has been reached");
+                                                        } else {
+                                                            s.containers.add(c);
+                                                            loaded = true;
+                                                            System.out.printf("The ship with id: %d has been loaded with a container with id : %d!",s.getID(),c.getID());
+                                                            System.out.println("-------------------------------------------------------------------------------------------");
+                                                        }
+                                                    }
+                                                    case 'B' -> {
+                                                        if(s.maxContainers()){
+                                                            System.out.println("The maximum number of refrigerated containers has been reached");
+                                                        } else {
+                                                            s.containers.add(c);
+                                                            loaded = true;
+                                                            System.out.printf("The ship with id: %d has been loaded with a container with id : %d!",s.getID(),c.getID());
+                                                            System.out.println("-------------------------------------------------------------------------------------------");
+                                                        }
                                                     }
                                                 }
-                                                case 'L' -> {
-                                                    if(s.maxLiqReached()){
-                                                        System.out.println("The maximum number of liquid containers has been reached");
-                                                    } else {
-                                                        s.containers.add(c);
-                                                    }
-                                                }
-                                                case 'R' -> {
-                                                    if(s.maxRefReached()){
-                                                        System.out.println("The maximum number of refrigerated containers has been reached");
-                                                    } else {
-                                                        s.containers.add(c);
-                                                    }
-                                                }
+                                            } else {
+                                                System.out.printf("The container is on port %d and the ship on port %d",c.current_port.getID(),s.getCurrentPort().getID());
                                             }
                                         }
                                     }
-                                    loaded = true;
-                                    System.out.println("Loaded !");
-                                    System.out.println("-------------------------------------------------------------------------------------------");
                                 }
                             }
                         }
@@ -218,14 +267,14 @@ public class Main {
                     for(Container c:AllContainers){
                         if(c.getID()==cont_id){
                             for(Ship s:AllShips){
-                                if(s.id==ship_id){
+                                if(s.getID()==ship_id){
                                     if(s.containers.contains(c)){
                                         s.containers.remove(c);
                                         unloaded = true;
-                                        System.out.println("Unloaded !");
+                                        System.out.printf("The container with id : %d has been unloaded from the ship!",c.getID());
                                         System.out.println("-------------------------------------------------------------------------------------------");
                                     }else {
-                                        System.out.println("The container is not in here ");
+                                        System.out.println("That container is not in here ");
                                         System.out.println("-------------------------------------------------------------------------------------------");
                                     }
                                 }
@@ -247,19 +296,28 @@ public class Main {
                     System.out.print("Enter the id of the Ship : ");
                     int ship_id = scan.nextInt();
                     for(Port p:AllPorts){
-                        if(p.port_id==port_id){
+                        if(p.getID()==port_id){
                             for(Ship s:AllShips){
-                                if(s.id==ship_id){
-                                    float distance = s.currentPort.calculate_distance((float) p.x_cord, (float) p.y_cord);
-                                    float fuel_distance = (float) (s.fuel_level*s.fuelConsumption);
-                                    if(distance>fuel_distance){
-                                        System.out.println("Not enough fuel");
+                                if(s.getID()==ship_id){
+                                    if(s.getCurrentPort()==p){
+                                        System.out.println("Ship is already in this port");
                                     } else {
-                                        s.currentPort = p;
-                                        p.incomingShip(s);
-                                        sailed = true;
-                                        System.out.println("The ship has sailed to the port");
-                                        System.out.println("-------------------------------------------------------------------------------------------");
+                                        float distance = s.getCurrentPort().calculate_distance((float) p.getXCord(), (float) p.getYCord());
+                                        float fuel_distance = (float) (s.getFuel_level()*s.getFuelConsumption());
+                                        if(distance>fuel_distance){
+                                            System.out.println("Not enough fuel");
+                                        } else {
+                                            Port departed_port = s.getCurrentPort();
+                                            departed_port.outgoingShip(s);
+                                            s.setCurrentPort(p);
+                                            p.incomingShip(s);
+                                            for(Container c:s.containers){
+                                                c.current_port = s.getCurrentPort();
+                                            }
+                                            sailed = true;
+                                            System.out.printf("The ship has sailed to the port with id : %d and has travelled a distance of %f",p.getID(),distance);
+                                            System.out.println("-------------------------------------------------------------------------------------------");
+                                        }
                                     }
                                 }
                             }
@@ -275,10 +333,10 @@ public class Main {
                     System.out.print("Enter the id of the ship");
                     int ship_id = scan.nextInt();
                     for(Ship s:AllShips){
-                        if(s.id==ship_id){
+                        if(s.getID()==ship_id){
                             System.out.print("Enter the amount of fuel");
                             float fuel = scan.nextFloat();
-                            if(fuel>(s.fuelCapacity-s.fuel_level)){
+                            if(fuel<(s.getFuelCapacity()-s.getFuel_level())){
                                 s.reFuel(fuel);
                                 refueled = true;
                                 System.out.println("Ship refueled !");

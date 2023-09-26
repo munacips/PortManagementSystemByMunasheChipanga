@@ -2,8 +2,8 @@
 public class BasicContainer extends Container {
     private final float fuel_consumption = 2.50F;
     char type = 'B';
-    public BasicContainer(int id,int wei){
-        super(id,wei);
+    public BasicContainer(int id, int wei, Port port){
+        super(id,wei,port);
     }
 
     @Override
@@ -31,5 +31,8 @@ public class BasicContainer extends Container {
         return this.type;
     }
 
-
+    @Override
+    Port getCurrent_port() {
+        return this.current_port;
+    }
 }

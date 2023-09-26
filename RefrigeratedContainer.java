@@ -2,9 +2,9 @@
 public class RefrigeratedContainer extends HeavyContainer {
 
     char type = 'R';
-    public RefrigeratedContainer(int id, int wei){
+    public RefrigeratedContainer(int id, int wei, Port port){
 
-        super(id,wei);
+        super(id,wei,port);
         super.setFuel_consumption(5.0F);
     }
 }

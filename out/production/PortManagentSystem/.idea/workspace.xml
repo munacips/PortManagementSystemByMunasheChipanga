@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="bb175409-7c7c-4381-91d2-acdee28ee271" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/Container.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeavyContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/HeavyContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PortManagentSystem/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PortManagentSystem/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PortManagentSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PortManagentSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PortManagentSystem/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PortManagentSystem/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PortManagentSystem/Ship.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PortManagentSystem/Ship.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ship.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,14 +39,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

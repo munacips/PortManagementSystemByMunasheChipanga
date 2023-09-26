@@ -2,16 +2,16 @@
 import java.util.ArrayList;
 
 public class Ship implements Iship {
-    int id;
-    int maxContainers;
-    int maxHeavyContainers;
-    int maxRefContainers;
-    int maxLiqContainers;
-    float fuel_level;
-    Port currentPort;
-    float maxWeight = 200000F;
-    float fuelCapacity = 500000F;
-    double fuelConsumption = 5.75F;
+    private final int id;
+    private final int maxContainers;
+    private final int maxHeavyContainers;
+    private final int maxRefContainers;
+    private final int maxLiqContainers;
+    private float fuel_level;
+    private Port currentPort;
+    private float maxWeight = 200000F; // questionable
+    private final float fuelCapacity = 500000F;
+    private double fuelConsumption = 5.75F;
     ArrayList<Container> containers = new ArrayList<>();
 
     public Ship(int id, Port p,int totalWeightCapacity, int maxNumberOfAllContainers, int maxNumberOfAllHeavyContainers, int maxNumberOfRefrigeratedContainers, int maxNumberOfLiquidContainers, double fuelConsumptionPerKm){
@@ -31,21 +31,72 @@ public class Ship implements Iship {
 
     @Override
     public boolean sailTo(Port p) {
-        if(p==this.currentPort){
-            return true;
-        } else {
-            return false;
-        }
+        return p == this.currentPort;
     }
 
     @Override
     public void reFuel(double newFuel) {
-        this.fuel_level+= (float) newFuel;
+        this.fuel_level += (float) newFuel;
     }
 
     @Override
     public boolean unLoad(Container cont) {
         return !containers.contains(cont);
+    }
+
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    @Override
+    public int getMaxContainers() {
+        return this.maxContainers;
+    }
+
+    @Override
+    public int getMaxHeavyContainers() {
+        return this.maxHeavyContainers;
+    }
+
+    @Override
+    public int getMaxRefContainers() {
+        return this.maxRefContainers;
+    }
+
+    @Override
+    public int getLiqContainers() {
+        return this.maxLiqContainers;
+    }
+
+    @Override
+    public float getFuel_level() {
+        return this.fuel_level;
+    }
+
+    @Override
+    public Port getCurrentPort() {
+        return this.currentPort;
+    }
+
+    @Override
+    public float getMaxWeight() {
+        return this.maxWeight;
+    }
+
+    @Override
+    public float getFuelCapacity() {
+        return this.fuelCapacity;
+    }
+
+    @Override
+    public double getFuelConsumption() {
+        return this.fuelConsumption;
+    }
+
+    @Override
+    public void setCurrentPort(Port p) {
+        this.currentPort = p;
     }
 
     @Override
@@ -79,6 +130,15 @@ public class Ship implements Iship {
             }
         }
         return count >= this.maxHeavyContainers;
+    }
+    public boolean maxContainers(){
+        int count = 0;
+        for(Container c:this.containers){
+            if(c.getType()=='B'){
+                count+=1;
+            }
+        }
+        return  count >= this.maxContainers;
     }
 }
 //Author : Munashe Chipanga
