@@ -6,16 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bb175409-7c7c-4381-91d2-acdee28ee271" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HeavyContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/HeavyContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/IPort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Iship.java" beforeDir="false" afterPath="$PROJECT_DIR$/Iship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LiquidContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/LiquidContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Port.java" beforeDir="false" afterPath="$PROJECT_DIR$/Port.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RefrigeratedContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/RefrigeratedContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ship.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

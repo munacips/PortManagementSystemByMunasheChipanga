@@ -2,9 +2,9 @@
 import java.util.ArrayList;
 
 public class Port implements IPort {
-    private double x_cord;
-    private double y_cord;
-    private int port_id;
+    private final double x_cord;
+    private final double y_cord;
+    private final int port_id;
     ArrayList<Ship> history = new ArrayList<>();
     ArrayList<Ship> current = new ArrayList<>();
 
